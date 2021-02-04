@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ApiService from './service/ApiService';
+import ApiService from '../../service/ApiService';
 
 class ListUserComponent extends Component {
 
@@ -9,7 +9,7 @@ class ListUserComponent extends Component {
             users: [],
             message: null
         }
-        //this.deleteUser = this.
+        this.reloadUserList = this.reloadUserList.bind(this);
 
     }
     componentDidMount(){ //component lifecycle hook
@@ -19,7 +19,7 @@ class ListUserComponent extends Component {
         ApiService.fetchUsers()
         .then((res) => {
             this.setState({users: res.data})
-        })
+        });
     }
 
    render() {
@@ -31,11 +31,11 @@ class ListUserComponent extends Component {
                     <thead>
                         <tr>
                             <th className="hidden">Id</th>
-                            <th>FirstName</th>
-                            <th>LastName</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            {/* <th>LastName</th>
                             <th>UserName</th>
-                            <th>Age</th>
-                            <th>Salary</th>
+                            <th>Age</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -43,21 +43,20 @@ class ListUserComponent extends Component {
                             this.state.users.map(
                         user =>
                                     <tr key={user.id}>
-                                        <td>{user.firstName}</td>
-                                        <td>{user.lastName}</td>
                                         <td>{user.username}</td>
-                                        <td>{user.age}</td>
-                                        <td>{user.salary}</td>
-                                        <td>
+                                        <td>{user.password}</td>
+                                        {/* <td>{user.lastName}</td>
+                                        <td>{user.username}</td>
+                                        <td>{user.age}</td> */}
+                                        {/* <td>
                                        <pre><button className="btn btn-success" onClick={() => this.editUser(user.id)} style={{marginLeft: '10px'}}> Edit</button>
                                        <button className="btn btn-success" onClick={() => this.deleteUser(user.id)}> Delete</button></pre>
-                                        </td>
+                                        </td> */}
                                     </tr>
                             )
                         }
                     </tbody>
                 </table>
-
             </div>
         );
     }
