@@ -26,7 +26,7 @@ class ListUserComponent extends Component {
         return (
             <div>
                 <h2 className="text-center">List of Users</h2>
-                <button className="btn btn-success" style={{width:'100px'}} onClick={() => this.addUser()}> Add User</button>
+                <h2 className="text-center">Data only visible to Admin</h2>
                 <table className="table table-striped">
                     <thead>
                         <tr>
